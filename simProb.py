@@ -32,7 +32,7 @@ def sim_multi_games(num_rounds, guess_num, guess_suit, initial_tickets):
     final_tickets = initial_tickets - total_tickets
     return final_tickets
 
-num_simulations = 1000000
+num_simulations = 100000
 house_tickets_post_sims = []
 
 for _ in range(num_simulations):
@@ -52,6 +52,7 @@ plt.title('Distribution of Average Casino Tickets after 1,000,000 Simulations')
 plt.show()
 
 print("Value   Frequency   Percentage")
-for value, frequency in frequency_counter.items():
+sorted_items = sorted(frequency_counter.items(), key=lambda x: x[1], reverse=True)
+for value, frequency in sorted_items:
     percentage = (frequency / num_simulations) * 100
     print(f"{value:<8} {frequency:<12} {percentage:.3f}%")
